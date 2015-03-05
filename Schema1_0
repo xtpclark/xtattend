@@ -1,0 +1,93 @@
+CREATE SCHEMA xtattend
+  AUTHORIZATION admin;
+
+GRANT ALL ON SCHEMA xtattend TO admin;
+GRANT ALL ON SCHEMA xtattend TO public;
+
+
+CREATE TABLE xtattend.attgrp
+(
+  attgrp_id serial NOT NULL,
+  attgrp_name text,
+  attgrp_descrip text,
+  CONSTRAINT attgrp_pkey PRIMARY KEY (attgrp_id),
+  CONSTRAINT attgrp_attgrp_name_key UNIQUE (attgrp_name)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE xtattend.attgrp
+  OWNER TO admin;
+  
+INSERT INTO xtattend.attgrp (attgrp_name, attgrp_descrip) VALUES ('3PMCLASS','3 PM Class');
+              
+              
+CREATE TABLE xtattend.attmember
+(
+   attmember_id serial NOT NULL,
+   attmember_attgrp_id integer,
+   attmember_cntct_id integer,
+   CONSTRAINT attmember_pkey PRIMARY KEY (attmember_id),
+   CONSTRAINT attmember_attgrp_cntct_id_key UNIQUE (attmember_attgrp_id,attmember_cntct_id)
+
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE xtattend.attmember
+  OWNER TO admin;
+
+INSERT INTO xtattend.attmember (attmember_attgrp_id,attmember_cntct_id) SELECT 1,cntct_id from cntct;
+
+CREATE TABLE xtattend.attsess
+(
+  attsess_id serial NOT NULL,
+  attsess_attgrp_id integer,
+  attsess_date date,
+  attsess_name text,
+  attsess_descrip text,
+  attsess_note text
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE xtattend.attsess
+  OWNER TO admin;
+
+INSERT INTO xtattend.attsess (attsess_attgrp_id,attsess_date,attsess_name,attsess_descrip) VALUES
+(1,now(),'Test Session','This is just a test');
+
+CREATE TABLE xtattend.attstat
+(
+   attstat_id serial NOT NULL,
+   attstat_code text,
+   attstat_descrip text,
+   CONSTRAINT attstat_pkey PRIMARY KEY (attstat_id),
+   CONSTRAINT attstat_attstat_status_key UNIQUE (attstat_code)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE xtattend.attstat
+  OWNER TO admin;
+
+INSERT INTO xtattend.attstat (attstat_code, attstat_descrip) VALUES 
+('A','Absent-No Excuse'),
+('AX','Absent-Excused'),
+('P','Present'),
+('T','Tardy');
+
+CREATE TABLE xtattend.attally
+(
+   attally_id serial NOT NULL,
+   attally_attmember_id integer,
+   attally_attsess_id integer,
+   attally_attstat_id integer,
+   CONSTRAINT attally_pkey PRIMARY KEY (attally_id),
+   CONSTRAINT attally_attsess_attstat_attmember_key UNIQUE (attally_attmember_id,attally_attsess_id,attally_attstat_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE xtattend.attally
+  OWNER TO admin;
