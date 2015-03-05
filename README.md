@@ -7,7 +7,6 @@ Do you need to keep track of registered members attending an event?
 
 
 
-
 <pre>
 General Schema 
 xtattend.attally - Attendance Record Data Table 
@@ -19,4 +18,12 @@ xtattend.attstat - Attendance Status Codes (Absent, Present, Etc.)
 xtattend.attcalendar - Calendar Data           
 xtattend.atttime - Time Data Table
 
+</pre>
+
+<h3>Privledges</h3>
+<pre>
+MaintainAttendanceGroup
+MaintainAttendanceMember
+MaintainAttendanceSession
+MaintainAttendance
 </pre>
