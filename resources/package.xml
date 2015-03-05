@@ -38,5 +38,7 @@
   <loadreport file="client/reports/attendancerecord.xml">xtattend package</loadreport>
 
   <createtable file = "database/tables/xtattendschema.sql" name = "xtattend" />
+  <createtable file = "database/tables/attcalendar.sql" name = "xtattend" />
+  <createtable file = "database/tables/atttime.sql" name = "xtattend" />
  
 </package>

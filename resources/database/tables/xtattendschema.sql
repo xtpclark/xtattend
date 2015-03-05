@@ -50,32 +50,33 @@ ALTER TABLE xtattend.attally_attally_id_seq OWNER TO admin;
 
 ALTER SEQUENCE attally_attally_id_seq OWNED BY attally.attally_id;
 
-CREATE TABLE attcalendar (
-    date date,
-    year double precision,
-    month double precision,
-    monthname text,
-    day double precision,
-    dayofyear double precision,
-    weekdayname text,
-    dayofweek double precision,
-    calendarweek double precision,
-    formatteddate text,
-    quartal text,
-    yearquartal text,
-    yearmonth text,
-    yearcalendarweek text,
-    weekend text,
-    americanholiday text,
-    period text,
-    cwstart date,
-    cwend date,
-    monthstart date,
-    monthend timestamp without time zone
-);
-
-
-ALTER TABLE xtattend.attcalendar OWNER TO admin;
+-- Calendar table is generated
+-- CREATE TABLE attcalendar (
+--     date date,
+--     year double precision,
+--     month double precision,
+--     monthname text,
+--     day double precision,
+--     dayofyear double precision,
+--     weekdayname text,
+--     dayofweek double precision,
+--     calendarweek double precision,
+--     formatteddate text,
+--     quartal text,
+--     yearquartal text,
+--     yearmonth text,
+--     yearcalendarweek text,
+--     weekend text,
+--     americanholiday text,
+--     period text,
+--     cwstart date,
+--     cwend date,
+--     monthstart date,
+--     monthend timestamp without time zone
+-- );
+-- 
+-- 
+-- ALTER TABLE xtattend.attcalendar OWNER TO admin;
 
 
 CREATE TABLE attgrp (
@@ -174,17 +175,17 @@ ALTER TABLE xtattend.attstat_attstat_id_seq OWNER TO admin;
 
 ALTER SEQUENCE attstat_attstat_id_seq OWNED BY attstat.attstat_id;
 
-CREATE TABLE atttime (
-    timeofday text,
-    hour double precision,
-    quarterhour text,
-    minute double precision,
-    daytimename text,
-    daynight text
-);
-
-
-ALTER TABLE xtattend.atttime OWNER TO admin;
+-- Times are generated
+-- CREATE TABLE atttime (
+--     timeofday text,
+--     hour double precision,
+--     quarterhour text,
+--     minute double precision,
+--     daytimename text,
+--     daynight text
+-- );
+-- 
+-- ALTER TABLE xtattend.atttime OWNER TO admin;
 
 ALTER TABLE ONLY attally ALTER COLUMN attally_id SET DEFAULT nextval('attally_attally_id_seq'::regclass);
 

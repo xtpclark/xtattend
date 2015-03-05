@@ -4,7 +4,7 @@ debugger;
 var qry = toolbox.executeQuery("SHOW search_path;", new Object);
 if (! qry.first())
   toolbox.messageBox("critical", mainwindow, qsTr("Initialize xtattend failed"),
-                     qsTr("Failed to initialize the CGMS package. "
+                     qsTr("Failed to initialize the xtattend package. "
                         + "This functionality may not work correctly. ")
                         .arg(qry.lastError().databaseText));
 else
@@ -20,8 +20,8 @@ else
   qry = toolbox.executeQuery("SET search_path TO xtattend, " + search_path + ";", new Object);
   if (!qry.isActive())
   {
-    toolbox.messageBox("critical", mainwindow, qsTr("Initializing CGMS failed"),
-                       qsTr("Failed to initialize the CGMS package. This "
+    toolbox.messageBox("critical", mainwindow, qsTr("Initializing xtattend failed"),
+                       qsTr("Failed to initialize the xtattend package. This "
                           + "functionality may not work correctly. %1")
                           .arg(qry.lastError().databaseText));
   }
