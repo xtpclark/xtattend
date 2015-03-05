@@ -1,4 +1,4 @@
-CREATE TABLE cgms.port
+CREATE TABLE xtattend.port
 (port_id SERIAL NOT NULL,
  port_number TEXT,
  port_descrip TEXT,
@@ -12,9 +12,9 @@ CREATE TABLE cgms.port
  CONSTRAINT port_pkey PRIMARY KEY (port_id)
 );
 
-ALTER TABLE cgms.port OWNER TO "admin";
-GRANT ALL ON TABLE cgms.port TO "admin";
-GRANT ALL ON TABLE cgms.port TO xtrole;
-GRANT ALL ON SEQUENCE cgms.port_port_id_seq TO xtrole;
+ALTER TABLE xtattend.port OWNER TO "admin";
+GRANT ALL ON TABLE xtattend.port TO "admin";
+GRANT ALL ON TABLE xtattend.port TO xtrole;
+GRANT ALL ON SEQUENCE xtattend.port_port_id_seq TO xtrole;
 
-COMMENT ON TABLE cgms.port IS 'Port Information';
+COMMENT ON TABLE xtattend.port IS 'Port Information';

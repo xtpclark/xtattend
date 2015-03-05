@@ -1,7 +1,7 @@
 debugger;
 
 include("storedProcErrorLookup");
-include("cgmsErrors");
+include("xtattendErrors");
 
 try
 {
@@ -142,7 +142,7 @@ function sDelete()
     var params = new Object();
     params.siteport_id = _list.id();
 
-    var qry = "SELECT cgms.deleteSitePort(<? value('siteport_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteSitePort(<? value('siteport_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -152,7 +152,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Site/Port"),
-                             storedProcErrorLookup("deleteSitePort", result, cgmsErrors));
+                             storedProcErrorLookup("deleteSitePort", result, xtattendErrors));
         return;
       }
     }

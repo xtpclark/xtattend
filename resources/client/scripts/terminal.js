@@ -88,7 +88,7 @@ function save()
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.terminal (terminal_port_id, terminal_number, terminal_descrip,  "
+      var qry = "INSERT INTO xtattend.terminal (terminal_port_id, terminal_number, terminal_descrip,  "
               + "                           terminal_addr_id, terminal_cntct_id) "
               + "VALUES (<? value('terminal_port_id') ?>, "
               + "        UPPER(<? value('terminal_number') ?>), "
@@ -98,7 +98,7 @@ function save()
     }
     else
     {
-      var qry = "UPDATE cgms.terminal "
+      var qry = "UPDATE xtattend.terminal "
               + "SET terminal_number= UPPER(<? value('terminal_number') ?>), "
               + "    terminal_descrip= <? value('terminal_descrip') ?>,"
               + "    terminal_addr_id= <? value('terminal_addr_id') ?>,"

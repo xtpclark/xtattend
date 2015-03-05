@@ -4,8 +4,8 @@
 
 SELECT siteport_id AS id,
        warehous_code, port_number
-FROM cgms.siteport LEFT OUTER JOIN warehous ON (warehous_id=siteport_site_id)
-                   LEFT OUTER JOIN cgms.port ON (port_id=siteport_port_id)
+FROM xtattend.siteport LEFT OUTER JOIN warehous ON (warehous_id=siteport_site_id)
+                   LEFT OUTER JOIN xtattend.port ON (port_id=siteport_port_id)
 WHERE (true)
 <? if exists('warehous_id') ?>
   AND (siteport_site_id=<? value('warehous_id') ?>)

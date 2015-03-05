@@ -1,4 +1,4 @@
-CREATE TABLE cgms.mktcost
+CREATE TABLE xtattend.mktcost
 (mktcost_id SERIAL NOT NULL,
  mktcost_item_id INTEGER NOT NULL,
  mktcost_costelem_id INTEGER NOT NULL,
@@ -13,9 +13,9 @@ CREATE TABLE cgms.mktcost
    ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-ALTER TABLE cgms.mktcost OWNER TO "admin";
-GRANT ALL ON TABLE cgms.mktcost TO "admin";
-GRANT ALL ON TABLE cgms.mktcost TO xtrole;
-GRANT ALL ON SEQUENCE cgms.mktcost_mktcost_id_seq TO xtrole;
+ALTER TABLE xtattend.mktcost OWNER TO "admin";
+GRANT ALL ON TABLE xtattend.mktcost TO "admin";
+GRANT ALL ON TABLE xtattend.mktcost TO xtrole;
+GRANT ALL ON SEQUENCE xtattend.mktcost_mktcost_id_seq TO xtrole;
 
-COMMENT ON TABLE cgms.mktcost IS 'Market Cost Information';
+COMMENT ON TABLE xtattend.mktcost IS 'Market Cost Information';

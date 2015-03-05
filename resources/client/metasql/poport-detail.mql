@@ -3,7 +3,7 @@
 -- Notes: Used by purchaseOrder
 
 SELECT poport.*
-FROM cgms.poport JOIN pohead ON (pohead_id=poport_pohead_id)
+FROM xtattend.poport JOIN pohead ON (pohead_id=poport_pohead_id)
 WHERE (true)
 <? if exists('pohead_number') ?>
   AND (pohead_number=<? value('pohead_number') ?>)

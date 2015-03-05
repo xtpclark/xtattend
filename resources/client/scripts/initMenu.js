@@ -1,9 +1,9 @@
 debugger;
 
-// Change the search_path to ensure existing client code works with tables moved to cgms schema
+// Change the search_path to ensure existing client code works with tables moved to xtattend schema
 var qry = toolbox.executeQuery("SHOW search_path;", new Object);
 if (! qry.first())
-  toolbox.messageBox("critical", mainwindow, qsTr("Initialize cgms failed"),
+  toolbox.messageBox("critical", mainwindow, qsTr("Initialize xtattend failed"),
                      qsTr("Failed to initialize the CGMS package. "
                         + "This functionality may not work correctly. ")
                         .arg(qry.lastError().databaseText));
@@ -17,7 +17,7 @@ else
   }
 
   // Prepend xtmfg to the existing search path.
-  qry = toolbox.executeQuery("SET search_path TO cgms, " + search_path + ";", new Object);
+  qry = toolbox.executeQuery("SET search_path TO xtattend, " + search_path + ";", new Object);
   if (!qry.isActive())
   {
     toolbox.messageBox("critical", mainwindow, qsTr("Initializing CGMS failed"),

@@ -31,7 +31,7 @@ try
   _refContract.populate( "SELECT -1 AS contract_id, 'None' AS contract_number "
                        + "UNION ALL "
                        + "SELECT contract_id, contract_number"
-                       +"  FROM cgms.contract"
+                       +"  FROM xtattend.contract"
                        +" ORDER BY contract_number;");
 
   _contractItem.addColumn(qsTr("Item"),          -1, Qt.AlignLeft,  true, "item_number");
@@ -173,7 +173,7 @@ function save(pCaptive)
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.contract (contract_number, contract_descrip, contract_notes, "
+      var qry = "INSERT INTO xtattend.contract (contract_number, contract_descrip, contract_notes, "
               + "                           contract_target_type, contract_target_id, contract_ref_contract_id, "
               + "                           contract_effective, contract_expires) "
               + "VALUES (<? value('contract_number') ?>, "
@@ -188,7 +188,7 @@ function save(pCaptive)
     }
     else
     {
-      var qry = "UPDATE cgms.contract "
+      var qry = "UPDATE xtattend.contract "
               + "SET contract_target_type = <? value('contract_target_type') ?>, "
               + "    contract_target_id = <? value('contract_target_id') ?>,"
               + "    contract_number = <? value('contract_number') ?>,"
@@ -387,7 +387,7 @@ function sDelete()
     var params = new Object();
     params.contractitem_id = _contractItem.id();
 
-    var qry = "SELECT cgms.deleteContractItem(<? value('contractitem_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteContractItem(<? value('contractitem_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -397,7 +397,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete ContractItem"),
-                             storedProcErrorLookup("deleteContractItem", result, cgmsErrors));
+                             storedProcErrorLookup("deleteContractItem", result, xtattendErrors));
         return;
       }
     }

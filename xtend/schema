@@ -1,0 +1,551 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.3.3
+-- Dumped by pg_dump version 9.3.6
+-- Started on 2015-02-20 21:21:15 EST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 43 (class 2615 OID 688970)
+-- Name: xtattend; Type: SCHEMA; Schema: -; Owner: admin
+--
+
+CREATE SCHEMA xtattend;
+
+
+ALTER SCHEMA xtattend OWNER TO admin;
+
+SET search_path = xtattend, pg_catalog;
+
+--
+-- TOC entry 3319 (class 1255 OID 689053)
+-- Name: update_changetimestamp_column(); Type: FUNCTION; Schema: xtattend; Owner: admin
+--
+
+CREATE FUNCTION update_changetimestamp_column() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+   NEW.changetimestamp = now(); 
+   RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION xtattend.update_changetimestamp_column() OWNER TO admin;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 1422 (class 1259 OID 689018)
+-- Name: attally; Type: TABLE; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE attally (
+    attally_id integer NOT NULL,
+    attally_attmember_id integer,
+    attally_attsess_id integer,
+    attally_attstat_id integer,
+    attally_recorded timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE xtattend.attally OWNER TO admin;
+
+--
+-- TOC entry 1421 (class 1259 OID 689016)
+-- Name: attally_attally_id_seq; Type: SEQUENCE; Schema: xtattend; Owner: admin
+--
+
+CREATE SEQUENCE attally_attally_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE xtattend.attally_attally_id_seq OWNER TO admin;
+
+--
+-- TOC entry 8216 (class 0 OID 0)
+-- Dependencies: 1421
+-- Name: attally_attally_id_seq; Type: SEQUENCE OWNED BY; Schema: xtattend; Owner: admin
+--
+
+ALTER SEQUENCE attally_attally_id_seq OWNED BY attally.attally_id;
+
+
+--
+-- TOC entry 1416 (class 1259 OID 688973)
+-- Name: attgrp; Type: TABLE; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE attgrp (
+    attgrp_id integer NOT NULL,
+    attgrp_name text,
+    attgrp_descrip text
+);
+
+
+ALTER TABLE xtattend.attgrp OWNER TO admin;
+
+--
+-- TOC entry 1415 (class 1259 OID 688971)
+-- Name: attgrp_attgrp_id_seq; Type: SEQUENCE; Schema: xtattend; Owner: admin
+--
+
+CREATE SEQUENCE attgrp_attgrp_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE xtattend.attgrp_attgrp_id_seq OWNER TO admin;
+
+--
+-- TOC entry 8217 (class 0 OID 0)
+-- Dependencies: 1415
+-- Name: attgrp_attgrp_id_seq; Type: SEQUENCE OWNED BY; Schema: xtattend; Owner: admin
+--
+
+ALTER SEQUENCE attgrp_attgrp_id_seq OWNED BY attgrp.attgrp_id;
+
+
+--
+-- TOC entry 1418 (class 1259 OID 688986)
+-- Name: attmember; Type: TABLE; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE attmember (
+    attmember_id integer NOT NULL,
+    attmember_attgrp_id integer,
+    attmember_cntct_id integer
+);
+
+
+ALTER TABLE xtattend.attmember OWNER TO admin;
+
+--
+-- TOC entry 1417 (class 1259 OID 688984)
+-- Name: attmember_attmember_id_seq; Type: SEQUENCE; Schema: xtattend; Owner: admin
+--
+
+CREATE SEQUENCE attmember_attmember_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE xtattend.attmember_attmember_id_seq OWNER TO admin;
+
+--
+-- TOC entry 8218 (class 0 OID 0)
+-- Dependencies: 1417
+-- Name: attmember_attmember_id_seq; Type: SEQUENCE OWNED BY; Schema: xtattend; Owner: admin
+--
+
+ALTER SEQUENCE attmember_attmember_id_seq OWNED BY attmember.attmember_id;
+
+
+--
+-- TOC entry 1424 (class 1259 OID 689042)
+-- Name: attsess; Type: TABLE; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE attsess (
+    attsess_id integer NOT NULL,
+    attsess_attgrp_id integer,
+    attsess_startdate timestamp without time zone NOT NULL,
+    attsess_stopdate timestamp without time zone NOT NULL,
+    attsess_name text,
+    attsess_descrip text,
+    attsess_note text
+);
+
+
+ALTER TABLE xtattend.attsess OWNER TO admin;
+
+--
+-- TOC entry 1423 (class 1259 OID 689040)
+-- Name: attsess_attsess_id_seq; Type: SEQUENCE; Schema: xtattend; Owner: admin
+--
+
+CREATE SEQUENCE attsess_attsess_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE xtattend.attsess_attsess_id_seq OWNER TO admin;
+
+--
+-- TOC entry 8219 (class 0 OID 0)
+-- Dependencies: 1423
+-- Name: attsess_attsess_id_seq; Type: SEQUENCE OWNED BY; Schema: xtattend; Owner: admin
+--
+
+ALTER SEQUENCE attsess_attsess_id_seq OWNED BY attsess.attsess_id;
+
+
+--
+-- TOC entry 1420 (class 1259 OID 689005)
+-- Name: attstat; Type: TABLE; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE attstat (
+    attstat_id integer NOT NULL,
+    attstat_code text,
+    attstat_descrip text
+);
+
+
+ALTER TABLE xtattend.attstat OWNER TO admin;
+
+--
+-- TOC entry 1419 (class 1259 OID 689003)
+-- Name: attstat_attstat_id_seq; Type: SEQUENCE; Schema: xtattend; Owner: admin
+--
+
+CREATE SEQUENCE attstat_attstat_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE xtattend.attstat_attstat_id_seq OWNER TO admin;
+
+--
+-- TOC entry 8220 (class 0 OID 0)
+-- Dependencies: 1419
+-- Name: attstat_attstat_id_seq; Type: SEQUENCE OWNED BY; Schema: xtattend; Owner: admin
+--
+
+ALTER SEQUENCE attstat_attstat_id_seq OWNED BY attstat.attstat_id;
+
+
+--
+-- TOC entry 7607 (class 2604 OID 689021)
+-- Name: attally_id; Type: DEFAULT; Schema: xtattend; Owner: admin
+--
+
+ALTER TABLE ONLY attally ALTER COLUMN attally_id SET DEFAULT nextval('attally_attally_id_seq'::regclass);
+
+
+--
+-- TOC entry 7604 (class 2604 OID 688976)
+-- Name: attgrp_id; Type: DEFAULT; Schema: xtattend; Owner: admin
+--
+
+ALTER TABLE ONLY attgrp ALTER COLUMN attgrp_id SET DEFAULT nextval('attgrp_attgrp_id_seq'::regclass);
+
+
+--
+-- TOC entry 7605 (class 2604 OID 688989)
+-- Name: attmember_id; Type: DEFAULT; Schema: xtattend; Owner: admin
+--
+
+ALTER TABLE ONLY attmember ALTER COLUMN attmember_id SET DEFAULT nextval('attmember_attmember_id_seq'::regclass);
+
+
+--
+-- TOC entry 7608 (class 2604 OID 689045)
+-- Name: attsess_id; Type: DEFAULT; Schema: xtattend; Owner: admin
+--
+
+ALTER TABLE ONLY attsess ALTER COLUMN attsess_id SET DEFAULT nextval('attsess_attsess_id_seq'::regclass);
+
+
+--
+-- TOC entry 7606 (class 2604 OID 689008)
+-- Name: attstat_id; Type: DEFAULT; Schema: xtattend; Owner: admin
+--
+
+ALTER TABLE ONLY attstat ALTER COLUMN attstat_id SET DEFAULT nextval('attstat_attstat_id_seq'::regclass);
+
+
+--
+-- TOC entry 8208 (class 0 OID 689018)
+-- Dependencies: 1422
+-- Data for Name: attally; Type: TABLE DATA; Schema: xtattend; Owner: admin
+--
+
+COPY attally (attally_id, attally_attmember_id, attally_attsess_id, attally_attstat_id, attally_recorded) FROM stdin;
+1	1	1	1	2015-02-20 20:54:19.939426-05
+2	2	1	1	2015-02-20 20:54:19.939426-05
+3	3	1	1	2015-02-20 20:54:19.939426-05
+4	4	1	1	2015-02-20 20:54:19.939426-05
+5	5	1	1	2015-02-20 20:54:19.939426-05
+6	6	1	1	2015-02-20 20:54:19.939426-05
+7	7	1	1	2015-02-20 20:54:19.939426-05
+8	8	1	1	2015-02-20 20:54:19.939426-05
+9	9	1	1	2015-02-20 20:54:19.939426-05
+10	10	1	1	2015-02-20 20:54:19.939426-05
+11	12	1	1	2015-02-20 20:54:19.939426-05
+12	14	1	1	2015-02-20 20:54:19.939426-05
+13	15	1	1	2015-02-20 20:54:19.939426-05
+14	16	1	1	2015-02-20 20:54:19.939426-05
+15	17	1	1	2015-02-20 20:54:19.939426-05
+16	18	1	1	2015-02-20 20:54:19.939426-05
+17	19	1	1	2015-02-20 20:54:19.939426-05
+18	21	1	1	2015-02-20 20:54:19.939426-05
+19	22	1	1	2015-02-20 20:54:19.939426-05
+20	23	1	1	2015-02-20 20:54:19.939426-05
+21	24	1	1	2015-02-20 20:54:19.939426-05
+22	25	1	1	2015-02-20 20:54:19.939426-05
+23	26	1	1	2015-02-20 20:54:19.939426-05
+24	27	1	1	2015-02-20 20:54:19.939426-05
+25	28	1	1	2015-02-20 20:54:19.939426-05
+26	29	1	1	2015-02-20 20:54:19.939426-05
+27	30	1	1	2015-02-20 20:54:19.939426-05
+28	20	1	1	2015-02-20 20:54:19.939426-05
+\.
+
+
+--
+-- TOC entry 8221 (class 0 OID 0)
+-- Dependencies: 1421
+-- Name: attally_attally_id_seq; Type: SEQUENCE SET; Schema: xtattend; Owner: admin
+--
+
+SELECT pg_catalog.setval('attally_attally_id_seq', 29, true);
+
+
+--
+-- TOC entry 8202 (class 0 OID 688973)
+-- Dependencies: 1416
+-- Data for Name: attgrp; Type: TABLE DATA; Schema: xtattend; Owner: admin
+--
+
+COPY attgrp (attgrp_id, attgrp_name, attgrp_descrip) FROM stdin;
+1	3PMCLASS	3 PM Class
+2	8AMCLASS	8 AM Class
+\.
+
+
+--
+-- TOC entry 8222 (class 0 OID 0)
+-- Dependencies: 1415
+-- Name: attgrp_attgrp_id_seq; Type: SEQUENCE SET; Schema: xtattend; Owner: admin
+--
+
+SELECT pg_catalog.setval('attgrp_attgrp_id_seq', 2, true);
+
+
+--
+-- TOC entry 8204 (class 0 OID 688986)
+-- Dependencies: 1418
+-- Data for Name: attmember; Type: TABLE DATA; Schema: xtattend; Owner: admin
+--
+
+COPY attmember (attmember_id, attmember_attgrp_id, attmember_cntct_id) FROM stdin;
+1	1	36
+2	1	35
+3	1	8
+4	1	33
+5	1	6
+6	1	7
+7	1	16
+8	1	17
+9	1	22
+10	1	24
+12	1	25
+14	1	28
+15	1	12
+16	1	34
+17	1	18
+18	1	29
+19	1	2
+21	2	1
+22	2	15
+23	2	14
+24	2	21
+25	2	9
+26	2	19
+27	2	3
+28	2	4
+29	2	5
+30	2	32
+20	2	37
+\.
+
+
+--
+-- TOC entry 8223 (class 0 OID 0)
+-- Dependencies: 1417
+-- Name: attmember_attmember_id_seq; Type: SEQUENCE SET; Schema: xtattend; Owner: admin
+--
+
+SELECT pg_catalog.setval('attmember_attmember_id_seq', 30, true);
+
+
+--
+-- TOC entry 8210 (class 0 OID 689042)
+-- Dependencies: 1424
+-- Data for Name: attsess; Type: TABLE DATA; Schema: xtattend; Owner: admin
+--
+
+COPY attsess (attsess_id, attsess_attgrp_id, attsess_startdate, attsess_stopdate, attsess_name, attsess_descrip, attsess_note) FROM stdin;
+1	1	2015-02-20 19:35:38.245219	2015-02-20 19:35:38.245219	TestGroup	Test Group	\N
+2	2	2015-02-21 12:00:00	2015-02-21 13:00:00	TestGroup2	Test Group 2	\N
+\.
+
+
+--
+-- TOC entry 8224 (class 0 OID 0)
+-- Dependencies: 1423
+-- Name: attsess_attsess_id_seq; Type: SEQUENCE SET; Schema: xtattend; Owner: admin
+--
+
+SELECT pg_catalog.setval('attsess_attsess_id_seq', 2, true);
+
+
+--
+-- TOC entry 8206 (class 0 OID 689005)
+-- Dependencies: 1420
+-- Data for Name: attstat; Type: TABLE DATA; Schema: xtattend; Owner: admin
+--
+
+COPY attstat (attstat_id, attstat_code, attstat_descrip) FROM stdin;
+1	A	Absent-No Excuse
+2	AX	Absent-Excused
+3	P	Present
+4	T	Tardy
+\.
+
+
+--
+-- TOC entry 8225 (class 0 OID 0)
+-- Dependencies: 1419
+-- Name: attstat_attstat_id_seq; Type: SEQUENCE SET; Schema: xtattend; Owner: admin
+--
+
+SELECT pg_catalog.setval('attstat_attstat_id_seq', 4, true);
+
+
+--
+-- TOC entry 7622 (class 2606 OID 689025)
+-- Name: attally_attsess_attstat_attmember_key; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attally
+    ADD CONSTRAINT attally_attsess_attstat_attmember_key UNIQUE (attally_attmember_id, attally_attsess_id, attally_attstat_id);
+
+
+--
+-- TOC entry 7624 (class 2606 OID 689023)
+-- Name: attally_pkey; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attally
+    ADD CONSTRAINT attally_pkey PRIMARY KEY (attally_id);
+
+
+--
+-- TOC entry 7610 (class 2606 OID 688983)
+-- Name: attgrp_attgrp_name_key; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attgrp
+    ADD CONSTRAINT attgrp_attgrp_name_key UNIQUE (attgrp_name);
+
+
+--
+-- TOC entry 7612 (class 2606 OID 688981)
+-- Name: attgrp_pkey; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attgrp
+    ADD CONSTRAINT attgrp_pkey PRIMARY KEY (attgrp_id);
+
+
+--
+-- TOC entry 7614 (class 2606 OID 688993)
+-- Name: attmember_attgrp_cntct_id_key; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attmember
+    ADD CONSTRAINT attmember_attgrp_cntct_id_key UNIQUE (attmember_attgrp_id, attmember_cntct_id);
+
+
+--
+-- TOC entry 7616 (class 2606 OID 688991)
+-- Name: attmember_pkey; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attmember
+    ADD CONSTRAINT attmember_pkey PRIMARY KEY (attmember_id);
+
+
+--
+-- TOC entry 7626 (class 2606 OID 689052)
+-- Name: attsess_grp_date_name_key; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attsess
+    ADD CONSTRAINT attsess_grp_date_name_key UNIQUE (attsess_attgrp_id, attsess_name, attsess_startdate, attsess_stopdate);
+
+
+--
+-- TOC entry 7628 (class 2606 OID 689050)
+-- Name: attsess_pkey; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attsess
+    ADD CONSTRAINT attsess_pkey PRIMARY KEY (attsess_id);
+
+
+--
+-- TOC entry 7618 (class 2606 OID 689015)
+-- Name: attstat_attstat_status_key; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attstat
+    ADD CONSTRAINT attstat_attstat_status_key UNIQUE (attstat_code);
+
+
+--
+-- TOC entry 7620 (class 2606 OID 689013)
+-- Name: attstat_pkey; Type: CONSTRAINT; Schema: xtattend; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY attstat
+    ADD CONSTRAINT attstat_pkey PRIMARY KEY (attstat_id);
+
+
+--
+-- TOC entry 8215 (class 0 OID 0)
+-- Dependencies: 43
+-- Name: xtattend; Type: ACL; Schema: -; Owner: admin
+--
+
+REVOKE ALL ON SCHEMA xtattend FROM PUBLIC;
+REVOKE ALL ON SCHEMA xtattend FROM admin;
+GRANT ALL ON SCHEMA xtattend TO admin;
+GRANT ALL ON SCHEMA xtattend TO PUBLIC;
+
+
+-- Completed on 2015-02-20 21:21:20 EST
+
+--
+-- PostgreSQL database dump complete
+--
+

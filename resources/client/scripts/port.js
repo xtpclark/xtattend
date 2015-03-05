@@ -149,7 +149,7 @@ function save(pCaptive)
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.port (port_number, port_descrip, "
+      var qry = "INSERT INTO xtattend.port (port_number, port_descrip, "
               + "                       port_costelem_id, port_shipzone_id) "
               + "VALUES (UPPER(<? value('port_number') ?>), "
               + "        <? value('port_descrip') ?>,"
@@ -166,7 +166,7 @@ function save(pCaptive)
 
     else
     {
-      var qry = "UPDATE cgms.port "
+      var qry = "UPDATE xtattend.port "
               + "SET port_number= UPPER(<? value('port_number') ?>), "
               + "    port_descrip= <? value('port_descrip') ?>,"
               + "    port_costelem_id= <? value('port_costelem_id') ?>,"
@@ -476,7 +476,7 @@ function sDelete()
     var params = new Object();
     params.terminal_id = _terminal.id();
 
-    var qry = "SELECT cgms.deleteTerminal(<? value('terminal_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteTerminal(<? value('terminal_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -486,7 +486,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Terminal"),
-                             storedProcErrorLookup("deleteTerminal", result, cgmsErrors));
+                             storedProcErrorLookup("deleteTerminal", result, xtattendErrors));
         return;
       }
     }

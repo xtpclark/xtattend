@@ -1,7 +1,7 @@
 debugger;
 
 include("storedProcErrorLookup");
-include("cgmsErrors");
+include("xtattendErrors");
 
 try
 {
@@ -132,7 +132,7 @@ function sDelete()
     var params = new Object();
     params.region_id = _list.id();
 
-    var qry = "SELECT cgms.deleteRegion(<? value('region_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteRegion(<? value('region_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -142,7 +142,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Region"),
-                             storedProcErrorLookup("deleteRegion", result, cgmsErrors));
+                             storedProcErrorLookup("deleteRegion", result, xtattendErrors));
         return;
       }
     }

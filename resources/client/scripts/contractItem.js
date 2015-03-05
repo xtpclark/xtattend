@@ -76,7 +76,7 @@ function handleSite()
   try
   {
     _port.populate("SELECT port_id, (port_number || '-' || port_descrip) "
-                  +"FROM cgms.siteport JOIN cgms.port ON (port_id=siteport_port_id) "
+                  +"FROM xtattend.siteport JOIN xtattend.port ON (port_id=siteport_port_id) "
                   +"WHERE (siteport_site_id=" + _site.id() + ") "
                   +"ORDER BY port_number;");
   }
@@ -172,7 +172,7 @@ function save()
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.contractitem (contractitem_contract_id, contractitem_item_id, contractitem_site_id, "
+      var qry = "INSERT INTO xtattend.contractitem (contractitem_contract_id, contractitem_item_id, contractitem_site_id, "
               + "                               contractitem_port_id, contractitem_pricing_type, contractitem_costelem_id, "
               + "                               contractitem_pctmarkup, contractitem_curr_id) "
               + "VALUES (<? value('contractitem_contract_id') ?>,"
@@ -186,7 +186,7 @@ function save()
     }
     else
     {
-      var qry = "UPDATE cgms.contractitem "
+      var qry = "UPDATE xtattend.contractitem "
               + "SET contractitem_item_id = <? value('contractitem_item_id') ?>,"
               + "    contractitem_site_id = <? value('contractitem_site_id') ?>,"
               + "    contractitem_port_id = <? value('contractitem_port_id') ?>,"

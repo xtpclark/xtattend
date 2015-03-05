@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION cgms.contractSalesPrice(INTEGER, INTEGER, INTEGER, INTEGER, NUMERIC) RETURNS NUMERIC AS $$
+CREATE OR REPLACE FUNCTION xtattend.contractSalesPrice(INTEGER, INTEGER, INTEGER, INTEGER, NUMERIC) RETURNS NUMERIC AS $$
 DECLARE
   pItemid ALIAS FOR $1;
   pWarehousid ALIAS FOR $2;
@@ -14,8 +14,8 @@ BEGIN
 --  raise exception 'item-%, warehouse=%, cust=%, port=%', pItemid, pWarehousid, pCustid, pPortid;
 
   SELECT * INTO _r
-  FROM cgms.contract
-       JOIN cgms.contractitem ON (contractitem_contract_id=contract_id)
+  FROM xtattend.contract
+       JOIN xtattend.contractitem ON (contractitem_contract_id=contract_id)
   WHERE (contract_target_type='C')
     AND (contract_target_id=pCustid)
     AND (contractitem_item_id=pItemid)
@@ -28,7 +28,7 @@ BEGIN
 
   IF (_r.contractitem_pricing_type='M') THEN
     SELECT SUM(mktcost_cost * (1 + _r.contractitem_pctmarkup)) INTO _result
-    FROM cgms.mktcost
+    FROM xtattend.mktcost
     WHERE (mktcost_item_id=_r.contractitem_item_id AND mktcost_costelem_id=_r.contractitem_costelem_id);
   ELSEIF (_r.contractitem_pricing_type='P') THEN
     SELECT (ipsitem_price - (ipsitem_price * _r.contractitem_pctmarkup)) INTO _result

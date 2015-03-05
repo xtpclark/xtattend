@@ -83,7 +83,7 @@ function save()
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.mktcost (mktcost_item_id, mktcost_costelem_id, mktcost_cost, mktcost_updated) "
+      var qry = "INSERT INTO xtattend.mktcost (mktcost_item_id, mktcost_costelem_id, mktcost_cost, mktcost_updated) "
               + "VALUES (<? value('mktcost_item_id') ?>, "
               + "        <? value('mktcost_costelem_id') ?>,"
               + "        <? value('mktcost_cost') ?>,"
@@ -91,7 +91,7 @@ function save()
     }
     else
     {
-      var qry = "UPDATE cgms.mktcost "
+      var qry = "UPDATE xtattend.mktcost "
               + "SET mktcost_item_id= <? value('mktcost_item_id') ?>, "
               + "    mktcost_costelem_id= <? value('mktcost_costelem_id') ?>,"
               + "    mktcost_cost= <? value('mktcost_cost') ?>,"

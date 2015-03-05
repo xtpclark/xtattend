@@ -1,11 +1,11 @@
-CREATE OR REPLACE FUNCTION cgms.deleteShipzone(INTEGER) RETURNS INTEGER AS $$
+CREATE OR REPLACE FUNCTION xtattend.deleteShipzone(INTEGER) RETURNS INTEGER AS $$
 DECLARE
   pShipzoneid ALIAS FOR $1;
 
 BEGIN
 
   IF (EXISTS(SELECT port_id
-             FROM cgms.port
+             FROM xtattend.port
              WHERE (port_shipzone_id=pShipzoneid)
              LIMIT 1)) THEN
     RETURN -1;

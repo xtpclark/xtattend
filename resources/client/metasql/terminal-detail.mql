@@ -4,7 +4,7 @@
 
 SELECT terminal_id AS id,
        terminal_number, terminal_descrip
-FROM cgms.terminal
+FROM xtattend.terminal
 WHERE (true)
 <? if exists('terminal_id') ?>
   AND (terminal_id=<? value('terminal_id') ?>)

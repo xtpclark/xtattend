@@ -1,4 +1,4 @@
-CREATE TABLE cgms.poport
+CREATE TABLE xtattend.poport
 (poport_id SERIAL NOT NULL,
  poport_pohead_id INTEGER,
  poport_port_id INTEGER,
@@ -9,9 +9,9 @@ CREATE TABLE cgms.poport
    ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-ALTER TABLE cgms.poport OWNER TO "admin";
-GRANT ALL ON TABLE cgms.poport TO "admin";
-GRANT ALL ON TABLE cgms.poport TO xtrole;
-GRANT ALL ON SEQUENCE cgms.poport_poport_id_seq TO xtrole;
+ALTER TABLE xtattend.poport OWNER TO "admin";
+GRANT ALL ON TABLE xtattend.poport TO "admin";
+GRANT ALL ON TABLE xtattend.poport TO xtrole;
+GRANT ALL ON SEQUENCE xtattend.poport_poport_id_seq TO xtrole;
 
-COMMENT ON TABLE cgms.poport IS 'Purchase Order / Port Relationships';
+COMMENT ON TABLE xtattend.poport IS 'Purchase Order / Port Relationships';

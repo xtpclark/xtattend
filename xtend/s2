@@ -1,0 +1,35 @@
+-- Table: xtattend.attsess
+
+-- DROP TABLE xtattend.attsess;
+
+CREATE TABLE xtattend.attsess
+(
+  attsess_id serial NOT NULL,
+  attsess_attgrp_id integer,
+  attsess_startdate  timestamp without time zone NOT NULL,
+  attsess_stopdate  timestamp without time zone NOT NULL,
+  attsess_name text,
+  attsess_descrip text,
+  attsess_note text,
+  CONSTRAINT attsess_pkey PRIMARY KEY (attsess_id),
+  CONSTRAINT attsess_grp_date_name_key UNIQUE (attsess_attgrp_id,attsess_name,attsess_startdate,attsess_stopdate)
+
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE xtattend.attsess
+  OWNER TO admin;
+
+
+SELECT DISTINCT EXTRACT (WEEK FROM xtattend.attsess_startdate) AS week, attsess_name FROM xtattend.attsess
+    WHERE  xtattend.attsess_startdate <= '2008-03-23 14:00:00' AND EXTRACT (DOW FROM xtattend.attsess_startdate) = 3
+    ORDER BY attsess_name DESC LIMIT 12;
+
+
+
+SELECT DISTINCT EXTRACT (WEEK FROM attsess_startdate) AS week, 
+EXTRACT 
+    (DOW FROM attsess_startdate) as dow,
+attsess_name FROM xtattend.attsess;
+

@@ -14,7 +14,7 @@ try
   var _contractbom = _contractbomTab.findChild("_contractbom");
 
   _port.populate("SELECT port_id, (port_number || '-' || port_descrip) "
-               + "FROM cgms.port "
+               + "FROM xtattend.port "
                + "ORDER BY port_number;");
 
   _contractbom.addColumn(qsTr("Site"),          -1, Qt.AlignLeft,  true, "site");

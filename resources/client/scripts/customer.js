@@ -175,7 +175,7 @@ function sDelete()
     var params = new Object();
     params.contract_id = _contract.id();
 
-    var qry = "SELECT cgms.deleteContract(<? value('contract_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteContract(<? value('contract_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -185,7 +185,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Contract"),
-                             storedProcErrorLookup("deleteContract", result, cgmsErrors));
+                             storedProcErrorLookup("deleteContract", result, xtattendErrors));
         return;
       }
     }

@@ -1,0 +1,40 @@
+schema: attendance
+
+table: attgrp
+	      attgrp_id = serial
+	      attgrp_name = 3PMClass
+	      attgrp_descrip = My 3PM Class
+	      
+Ability to create groups based on bulk selection of contact/customer characteristics.
+	      
+table: attmember
+           attmember_id
+           attmember_attgrp_id
+		   attmember_cntct_id
+  
+table: attsess
+           attsess_id
+           attsess_attgrp_id
+           attsess_date
+           attsess_note
+           
+table: attstat
+			attstat_id
+			attstat_status = Present, Absent, Absent-excused, etc
+
+table: attally
+		   attally_id
+		   attally_attmember_id
+		   attsess_id
+		   attstat_id
+		   
+			
+           Attendance for 20.02.2015 <-- attendance_session 
+           
+Beauchamp, David		[combobox] ---> attstat_status 
+Clark, Carolyn			[combobox]		
+Clark, Perry			[combobox]		
+
+[Submit] -> to attally table...
+
+

@@ -1,7 +1,7 @@
 debugger;
 
 include("storedProcErrorLookup");
-include("cgmsErrors");
+include("xtattendErrors");
 
 try
 {
@@ -16,7 +16,7 @@ try
   mywindow.parameterWidget().append(qsTr("Site"), "warehous_id", ParameterWidget.Site, true, true);
   mywindow.parameterWidget().appendComboBox(qsTr("Port"), "port_id",
                    "SELECT port_id, (port_number || '-' || port_descrip) "
-                 + "FROM cgms.port "
+                 + "FROM xtattend.port "
                  + "ORDER BY port_number;", true, true);
   mywindow.parameterWidget().applyDefaultFilterSet();
 

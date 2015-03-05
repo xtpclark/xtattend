@@ -24,7 +24,7 @@ try
   _contract.addColumn(qsTr("Price"),         -1, Qt.AlignRig,   true, "contractitem_pctmarkup");
 
   _port.populate("SELECT port_id, (port_number || '-' || port_descrip)"
-                +"  FROM cgms.port"
+                +"  FROM xtattend.port"
                 +" ORDER BY port_number;");
   _select.clicked.connect(select);
   _close.clicked.connect(myclose);

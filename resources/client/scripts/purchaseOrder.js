@@ -22,7 +22,7 @@ try
   _port.maximumWidth = 200;
   _port.text = qsTr("Port");
   _port.populate("SELECT port_id, (port_number || '-' || port_descrip) "
-               + "FROM cgms.port "
+               + "FROM xtattend.port "
                + "ORDER BY port_number;");
   _layout.addWidget(_port, 0, 3);
 
@@ -58,7 +58,7 @@ function handlePort()
   try
   {
     _terminal.populate("SELECT terminal_id, (terminal_number || '-' || terminal_descrip) "
-                     + "FROM cgms.terminal "
+                     + "FROM xtattend.terminal "
                      + "WHERE (terminal_port_id=" + _port.id() + ") "
                      + "ORDER BY terminal_number;");
   }
@@ -77,7 +77,7 @@ function handleTerminal()
     params.terminal_id = _terminal.id();
 
     var data = toolbox.executeQuery("SELECT * "
-                                  + "FROM cgms.terminal LEFT OUTER JOIN addr ON (addr_id=terminal_addr_id) "
+                                  + "FROM xtattend.terminal LEFT OUTER JOIN addr ON (addr_id=terminal_addr_id) "
                                   + "WHERE (terminal_id=<? value('terminal_id') ?>);", params);
     if (data.first())
     {

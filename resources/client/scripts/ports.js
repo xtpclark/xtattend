@@ -1,7 +1,7 @@
 debugger;
 
 include("storedProcErrorLookup");
-include("cgmsErrors");
+include("xtattendErrors");
 
 try
 {
@@ -157,7 +157,7 @@ function sDelete()
     var params = new Object();
     params.port_id = _list.id();
 
-    var qry = "SELECT cgms.deletePort(<? value('port_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deletePort(<? value('port_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -167,7 +167,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Port"),
-                             storedProcErrorLookup("deletePort", result, cgmsErrors));
+                             storedProcErrorLookup("deletePort", result, xtattendErrors));
         return;
       }
     }

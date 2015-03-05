@@ -1,0 +1,94 @@
+CREATE OR REPLACE FUNCTION getDateList(date1 date, date2 date)
+RETURNS SETOF date AS
+$BODY$
+DECLARE
+    count integer;
+    lower_limit integer :=  0;
+    upper_limit integer :=  date2 - date1;
+BEGIN
+    FOR count IN lower_limit..upper_limit LOOP
+        RETURN NEXT date1 + count;
+    END LOOP;
+    RETURN;
+END;
+$BODY$
+LANGUAGE plpgsql VOLATILE;
+
+
+	SELECT to_char(*,'DAY')::text as dates FROM 
+	(
+	select to_char(getdatelist('01-01-2015','12-31-2015'),'DAY')
+		) as foo
+		
+
+
+	where dates = 'tuesday';
+
+ WHERE foo='TUESDAY';
+ 
+ 
+select to_char(getdatelist('01-01-2015','12-31-2015'),'DAY'), to_char(getdatelist('01-01-2015','12-31-2015'),'DOW') WHERE 1
+
+
+select getdatelist('01-01-2015','12-31-2015') as date, to_char(getdatelist('01-01-2015','12-31-2015'),'Day') as day , to_char(getdatelist('01-01-2015','12-31-2015'),'d') as dow INTO xtattend.datetmp;
+
+SELECT * FROM xtattend.datetmp where dow in ('3','5','7') and date > now()
+order by 1 limit 1;
+
+
+SELECT * FROM xtattend.attcalendar where weekdayname in ('Tuesday','Thursday','Saturday') and date > current_date and monthname='February' and year='2015';
+
+SELECT * FROM xtattend.sess; 
+
+
+
+SELECT * FROM xtattend.attcalendar where weekdayname in ('Tuesday','Thursday') and date BETWEEN '2015-01-01' AND '2015-06-18' and year='2015';
+
+
+SELECT * FROM xtattend.attcalendar where weekdayname in ('Saturday')  and year='2015';
+
+
+dev=# SELECT 1,date,date,'HomwWorkClub','HomeWork Club' FROM xtattend.attcalendar where weekdayname in ('Tuesday','Thursday') and date BETWEEN '2015-01-01' AND '2015-06-18' and year='2015';
+
+
+ INSERT INTO xtattend.attsess SELECT nextval('xtattend.attsess_attsess_id_seq'), 1,date,date,'HomwWorkClub','HomeWork Club','' FROM xtattend.attcalendar where weekdayname in ('Tuesday','Thursday') and date BETWEEN '2015-01-01' AND '2015-06-18' and year='2015';
+UPDATE xtattend.attally SET attally_attstat_id = trunc(random() * 4::double precision)+1;
+
+
+
+SELECT cntct_last_name, cntct_first_name, cntct_name, cntct_email, attstat_code, attstat_descrip, attsess.*, attgrp.*, contactchar.* , attally_recorded
+FROM xtattend.attally
+JOIN xtattend.attmember ON (attmember_id=attally_attmember_id)
+JOIN xtattend.attsess ON (attsess_id=attally_attsess_id)
+JOIN xtattend.attstat ON (attstat_id=attally_attstat_id)
+JOIN xtattend.attgrp ON (attgrp_id=attsess_attgrp_id)
+JOIN cntct ON (cntct_id=attmember_cntct_id)
+LEFT JOIN api.contactchar ON (contact_number=cntct_number);
+
+SELECT cntct_last_name, cntct_first_name, cntct_name, cntct_email, attstat_code, attstat_descrip, attsess.*, attgrp.*, contactchar.* , attally_recorded
+FROM xtattend.attally
+JOIN xtattend.attmember ON (attmember_id=attally_attmember_id)
+JOIN xtattend.attsess ON (attsess_id=attally_attsess_id)
+JOIN xtattend.attstat ON (attstat_id=attally_attstat_id)
+JOIN xtattend.attgrp ON (attgrp_id=attsess_attgrp_id)
+JOIN cntct ON (cntct_id=attmember_cntct_id)
+LEFT JOIN api.contactchar ON (contact_number=cntct_number) order by attsess_startdate, cntct_last_name;
+
+
+
+INSERT INTO xtattend.attally (attally_attmember_id, attally_attsess_id, attally_attstat_id, attally_recorded)  select attally_attmember_id, 21, attally_attstat_id, now() from xtattend.attally WHERE attally_attsess_id=18;
+UPDATE xtattend.attally SET attally_attstat_id = 3
+
+
+
+SELECT cntct_last_name, cntct_first_name, cntct_name, cntct_email, attstat_code, attstat_descrip, attsess.*, attgrp.*, contactchar.* , attally_recorded
+FROM xtattend.attally
+JOIN xtattend.attmember ON (attmember_id=attally_attmember_id)
+JOIN xtattend.attsess ON (attsess_id=attally_attsess_id)
+JOIN xtattend.attstat ON (attstat_id=attally_attstat_id)
+JOIN xtattend.attgrp ON (attgrp_id=attsess_attgrp_id)
+JOIN cntct ON (cntct_id=attmember_cntct_id)
+LEFT JOIN api.contactchar ON (contact_number=cntct_number) 
+where cntct_name='Sam Masters'
+order by attsess_startdate, cntct_last_name;
+

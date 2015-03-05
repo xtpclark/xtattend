@@ -48,7 +48,7 @@ function handleUsesContract()
     var params = new Object();
     params.item_id = _item.id();
     var data = toolbox.executeQuery("SELECT itemcontract_uses_contract "
-                                   +"FROM cgms.itemcontract "
+                                   +"FROM xtattend.itemcontract "
                                    +"WHERE (itemcontract_item_id=<? value('item_id') ?>);", params);
     if (data.first())
     {
@@ -194,7 +194,7 @@ function sDelete()
     var params = new Object();
     params.terminal_id = _contrace.id();
 
-    var qry = "SELECT cgms.deleteContract(<? value('contract_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteContract(<? value('contract_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -204,7 +204,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Contract"),
-                             storedProcErrorLookup("deleteContract", result, cgmsErrors));
+                             storedProcErrorLookup("deleteContract", result, xtattendErrors));
         return;
       }
     }

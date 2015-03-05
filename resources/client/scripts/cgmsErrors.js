@@ -1,10 +1,10 @@
-var cgmsErrors = new Object;
+var xtattendErrors = new Object;
 
-cgmsErrors.deleteContract = new Object;
-cgmsErrors.deleteContract[-1] = qsTr("Cannot delete Contract");
-cgmsErrors.deletePort = new Object;
-cgmsErrors.deletePort[-1] = qsTr("Cannot delete Port, used by Contract");
-cgmsErrors.deletePort[-2] = qsTr("Cannot delete Port, used by Sales Order");
-cgmsErrors.deletePort[-3] = qsTr("Cannot delete Port, used by Purchase Order");
-cgmsErrors.deleteShipzone = new Object;
-cgmsErrors.deleteShipzone[-1] = qsTr("Cannot delete Shipzone, used by Port");
+xtattendErrors.deleteContract = new Object;
+xtattendErrors.deleteContract[-1] = qsTr("Cannot delete Contract");
+xtattendErrors.deletePort = new Object;
+xtattendErrors.deletePort[-1] = qsTr("Cannot delete Port, used by Contract");
+xtattendErrors.deletePort[-2] = qsTr("Cannot delete Port, used by Sales Order");
+xtattendErrors.deletePort[-3] = qsTr("Cannot delete Port, used by Purchase Order");
+xtattendErrors.deleteShipzone = new Object;
+xtattendErrors.deleteShipzone[-1] = qsTr("Cannot delete Shipzone, used by Port");

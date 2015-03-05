@@ -1,4 +1,4 @@
-CREATE TABLE cgms.contractitem
+CREATE TABLE xtattend.contractitem
 (contractitem_id SERIAL NOT NULL,
  contractitem_contract_id INTEGER NOT NULL,
  contractitem_item_id INTEGER NOT NULL,
@@ -10,16 +10,16 @@ CREATE TABLE cgms.contractitem
  contractitem_curr_id INTEGER NOT NULL DEFAULT basecurrid(),
  CONSTRAINT contractitem_pkey PRIMARY KEY (contractitem_id),
  CONSTRAINT contractitem_contractitem_contract_id_fkey FOREIGN KEY (contractitem_contract_id)
-   REFERENCES cgms.contract (contract_id) MATCH SIMPLE
+   REFERENCES xtattend.contract (contract_id) MATCH SIMPLE
    ON UPDATE NO ACTION ON DELETE CASCADE,
  CONSTRAINT contractitem_contractitem_curr_id_fkey FOREIGN KEY (contractitem_curr_id)
    REFERENCES curr_symbol (curr_id) MATCH SIMPLE
    ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-ALTER TABLE cgms.contractitem OWNER TO "admin";
-GRANT ALL ON TABLE cgms.contractitem TO "admin";
-GRANT ALL ON TABLE cgms.contractitem TO xtrole;
-GRANT ALL ON SEQUENCE cgms.contractitem_contractitem_id_seq TO xtrole;
+ALTER TABLE xtattend.contractitem OWNER TO "admin";
+GRANT ALL ON TABLE xtattend.contractitem TO "admin";
+GRANT ALL ON TABLE xtattend.contractitem TO xtrole;
+GRANT ALL ON SEQUENCE xtattend.contractitem_contractitem_id_seq TO xtrole;
 
-COMMENT ON TABLE cgms.contract IS 'Contract Item Information';
+COMMENT ON TABLE xtattend.contract IS 'Contract Item Information';

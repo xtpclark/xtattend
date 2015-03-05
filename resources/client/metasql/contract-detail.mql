@@ -33,15 +33,15 @@ SELECT contract_id AS id,
        CASE WHEN COALESCE(contract_expires, endOfTime()) >=
                  endOfTime() THEN 'Never'
        END AS contract_expires_qtdisplayrole 
-FROM cgms.contract LEFT OUTER JOIN custinfo ON (cust_id=contract_target_id)
+FROM xtattend.contract LEFT OUTER JOIN custinfo ON (cust_id=contract_target_id)
                    LEFT OUTER JOIN vendinfo ON (vend_id=contract_target_id)
-                   LEFT OUTER JOIN cgms.contractitem ON (contractitem_contract_id=contract_id)
+                   LEFT OUTER JOIN xtattend.contractitem ON (contractitem_contract_id=contract_id)
                    LEFT OUTER JOIN item ON (item_id=contractitem_item_id)
                    LEFT OUTER JOIN warehous ON (warehous_id=contractitem_site_id)
                    LEFT OUTER JOIN costelem ON (costelem_id=contractitem_costelem_id)
                    LEFT OUTER JOIN ipshead ON (ipshead_id=contractitem_costelem_id)
                    LEFT OUTER JOIN curr_symbol ON (curr_id=contractitem_curr_id)
-                   LEFT OUTER JOIN cgms.port ON (port_id=contractitem_port_id)
+                   LEFT OUTER JOIN xtattend.port ON (port_id=contractitem_port_id)
 WHERE (true)
 <? if exists('startDate') ?>
   AND (contract_effective >= <? value('startDate') ?>)

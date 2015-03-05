@@ -1,10 +1,10 @@
-CREATE OR REPLACE FUNCTION cgms.deleteMktCost(INTEGER) RETURNS INTEGER AS $$
+CREATE OR REPLACE FUNCTION xtattend.deleteMktCost(INTEGER) RETURNS INTEGER AS $$
 DECLARE
   pMktcostid ALIAS FOR $1;
 
 BEGIN
 
-  DELETE FROM cgms.mktcost WHERE mktcost_id=pMktcostid;
+  DELETE FROM xtattend.mktcost WHERE mktcost_id=pMktcostid;
 
   RETURN pMktcostid;
 END;

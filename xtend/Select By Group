@@ -1,0 +1,3 @@
+﻿select *,cntct_last_name, cntct_first_name from cntct JOIN xtattend.attmember ON (cntct_id=attmember_cntct_id)
+JOIN xtattend.attgrp ON (attmember_attgrp_id=attgrp_id)
+where attmember_attgrp_id=1 order by cntct_last_name;

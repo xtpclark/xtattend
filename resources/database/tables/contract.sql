@@ -1,4 +1,4 @@
-CREATE TABLE cgms.contract
+CREATE TABLE xtattend.contract
 (contract_id SERIAL NOT NULL,
  contract_number TEXT NOT NULL,
  contract_descrip TEXT,
@@ -12,9 +12,9 @@ CREATE TABLE cgms.contract
  CONSTRAINT contract_contract_target_type_check CHECK (contract_target_type = ANY (ARRAY['C'::bpchar, 'V'::bpchar]::text[]))
 );
 
-ALTER TABLE cgms.contract OWNER TO "admin";
-GRANT ALL ON TABLE cgms.contract TO "admin";
-GRANT ALL ON TABLE cgms.contract TO xtrole;
-GRANT ALL ON SEQUENCE cgms.contract_contract_id_seq TO xtrole;
+ALTER TABLE xtattend.contract OWNER TO "admin";
+GRANT ALL ON TABLE xtattend.contract TO "admin";
+GRANT ALL ON TABLE xtattend.contract TO xtrole;
+GRANT ALL ON SEQUENCE xtattend.contract_contract_id_seq TO xtrole;
 
-COMMENT ON TABLE cgms.contract IS 'Contract Header Information';
+COMMENT ON TABLE xtattend.contract IS 'Contract Header Information';

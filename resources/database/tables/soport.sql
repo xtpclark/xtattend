@@ -1,4 +1,4 @@
-CREATE TABLE cgms.soport
+CREATE TABLE xtattend.soport
 (soport_id SERIAL NOT NULL,
  soport_cohead_id INTEGER,
  soport_port_id INTEGER,
@@ -9,9 +9,9 @@ CREATE TABLE cgms.soport
    ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-ALTER TABLE cgms.soport OWNER TO "admin";
-GRANT ALL ON TABLE cgms.soport TO "admin";
-GRANT ALL ON TABLE cgms.soport TO xtrole;
-GRANT ALL ON SEQUENCE cgms.soport_soport_id_seq TO xtrole;
+ALTER TABLE xtattend.soport OWNER TO "admin";
+GRANT ALL ON TABLE xtattend.soport TO "admin";
+GRANT ALL ON TABLE xtattend.soport TO xtrole;
+GRANT ALL ON SEQUENCE xtattend.soport_soport_id_seq TO xtrole;
 
-COMMENT ON TABLE cgms.soport IS 'Sales Order / Port Relationships';
+COMMENT ON TABLE xtattend.soport IS 'Sales Order / Port Relationships';

@@ -1,7 +1,7 @@
 debugger;
 
 include("storedProcErrorLookup");
-include("cgmsErrors");
+include("xtattendErrors");
 
 try
 {
@@ -145,7 +145,7 @@ function sDelete()
     var params = new Object();
     params.mktcost_id = _list.id();
 
-    var qry = "SELECT cgms.deleteMktCost(<? value('mktcost_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteMktCost(<? value('mktcost_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -155,7 +155,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Market Cost"),
-                             storedProcErrorLookup("deleteMktCost", result, cgmsErrors));
+                             storedProcErrorLookup("deleteMktCost", result, xtattendErrors));
         return;
       }
     }

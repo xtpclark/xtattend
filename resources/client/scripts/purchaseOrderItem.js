@@ -35,7 +35,7 @@ function usesContract()
     params.item_id = _item.id();
 
     var data = toolbox.executeQuery("SELECT itemcontract_uses_contract "
-                                  + "FROM cgms.itemcontract "
+                                  + "FROM xtattend.itemcontract "
                                   + "WHERE (itemcontract_item_id=<? value('item_id') ?>);", params);
     if (data.first())
     {
@@ -70,7 +70,7 @@ function getPoheadInfo()
     params.pohead_number = _poNumber.text;
 
     var data = toolbox.executeQuery("SELECT pohead_vend_id, poport_port_id "
-                                  + "FROM pohead LEFT OUTER JOIN cgms.poport ON (poport_pohead_id=pohead_id) "
+                                  + "FROM pohead LEFT OUTER JOIN xtattend.poport ON (poport_pohead_id=pohead_id) "
                                   + "WHERE (pohead_number=<? value('pohead_number') ?>);", params);
     if (data.first())
     {
@@ -104,7 +104,7 @@ function sDeterminePrice()
     params.vend_id = _vendid;
     params.port_id = _portid;
 
-    var data = toolbox.executeQuery("SELECT cgms.contractPurchasePrice(<? value('item_id') ?>, "
+    var data = toolbox.executeQuery("SELECT xtattend.contractPurchasePrice(<? value('item_id') ?>, "
                                   + "                                  <? value('warehous_id') ?>, "
                                   + "                                  <? value('vend_id') ?>, "
                                   + "                                  <? value('port_id') ?>) "

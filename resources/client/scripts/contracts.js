@@ -1,7 +1,7 @@
 debugger;
 
 include("storedProcErrorLookup");
-include("cgmsErrors");
+include("xtattendErrors");
 
 try
 {
@@ -31,7 +31,7 @@ try
   mywindow.parameterWidget().append(qsTr("Site"), "warehous_id", ParameterWidget.Site);
   mywindow.parameterWidget().appendComboBox(qsTr("Port"), "port_id",
                    "SELECT port_id, (port_number || '-' || port_descrip) "
-                 + "FROM cgms.port "
+                 + "FROM xtattend.port "
                  + "ORDER BY port_number;");
   mywindow.parameterWidget().applyDefaultFilterSet();
 
@@ -172,7 +172,7 @@ function sDelete()
     var params = new Object();
     params.contract_id = _list.id();
 
-    var qry = "SELECT cgms.deleteContract(<? value('contract_id') ?>) AS result;";
+    var qry = "SELECT xtattend.deleteContract(<? value('contract_id') ?>) AS result;";
 
     var data = toolbox.executeQuery(qry, params);
     if (data.first())
@@ -182,7 +182,7 @@ function sDelete()
       {
         QMessageBox.critical(mywindow,
                              qsTr("Could not Delete Contract"),
-                             storedProcErrorLookup("deleteContract", result, cgmsErrors));
+                             storedProcErrorLookup("deleteContract", result, xtattendErrors));
         return;
       }
     }

@@ -1,0 +1,6 @@
+select cntct_last_name,cntct_first_name,attgrp_name, attsess.*, attsess_name,attsess_descrip from cntct 
+ JOIN xtattend.attmember ON (cntct_id=attmember_cntct_id)
+ JOIN xtattend.attgrp ON (attmember_attgrp_id=attgrp_id)
+ 
+ LEFT OUTER JOIN xtattend.attsess ON (attgrp_id=attsess_attgrp_id)
+ order by attgrp_name, cntct_last_name;

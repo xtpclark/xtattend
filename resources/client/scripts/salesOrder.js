@@ -25,7 +25,7 @@ try
   _port.populate("SELECT -1, '' AS port_number "
                + "UNION ALL "
                + "SELECT port_id, (port_number || '-' || port_descrip) "
-               + "FROM cgms.port "
+               + "FROM xtattend.port "
                + "ORDER BY port_number;");
   _layout.addWidget(_port, 0, 3);
   
@@ -71,7 +71,7 @@ function handlePort()
     _terminal.populate("SELECT -1, '' AS terminal_number "
                      + "UNION ALL "
                      + "SELECT terminal_id, (terminal_number || '-' || terminal_descrip) "
-                     + "FROM cgms.terminal "
+                     + "FROM xtattend.terminal "
                      + "WHERE (terminal_port_id=" + _port.id() + ") "
                      + "ORDER BY terminal_number;");
   }
@@ -93,7 +93,7 @@ function handleTerminal()
     params.terminal_id = _terminal.id();
 
     var data = toolbox.executeQuery("SELECT * "
-                                  + "FROM cgms.terminal JOIN addr ON (addr_id=terminal_addr_id) "
+                                  + "FROM xtattend.terminal JOIN addr ON (addr_id=terminal_addr_id) "
                                   + "WHERE (terminal_id=<? value('terminal_id') ?>);", params);
     if (data.first())
     {

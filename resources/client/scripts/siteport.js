@@ -9,7 +9,7 @@ try
   var _mode = '';
 
   _port.populate("SELECT port_id, port_number"
-                +"  FROM cgms.port"
+                +"  FROM xtattend.port"
                 +" ORDER BY port_number;");
   _warehouse.setFocus();
   _save.clicked.connect(save);
@@ -77,13 +77,13 @@ function save()
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.siteport (siteport_site_id, siteport_port_id) "
+      var qry = "INSERT INTO xtattend.siteport (siteport_site_id, siteport_port_id) "
               + "VALUES (<? value('siteport_site_id') ?>, "
               + "        <? value('siteport_port_id') ?>);";
     }
     else
     {
-      var qry = "UPDATE cgms.siteport "
+      var qry = "UPDATE xtattend.siteport "
               + "SET siteport_site_id= <? value('siteport_site_id') ?>, "
               + "    siteport_port_id= <? value('siteport_port_id') ?> "
               + "WHERE (siteport_id = <? value('siteport_id') ?>);";

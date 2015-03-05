@@ -14,13 +14,13 @@ SELECT contractitem_id AS id,
        END AS f_index, 
        contractitem_pctmarkup, curr_name,
        'percent' AS contractitem_pctmarkup_xtnumericrole
-FROM cgms.contractitem
+FROM xtattend.contractitem
                    LEFT OUTER JOIN item ON (item_id=contractitem_item_id)
                    LEFT OUTER JOIN warehous ON (warehous_id=contractitem_site_id)
                    LEFT OUTER JOIN costelem ON (costelem_id=contractitem_costelem_id)
                    LEFT OUTER JOIN ipshead ON (ipshead_id=contractitem_costelem_id)
                    LEFT OUTER JOIN curr_symbol ON (curr_id=contractitem_curr_id)
-                   LEFT OUTER JOIN cgms.port ON (port_id=contractitem_port_id)
+                   LEFT OUTER JOIN xtattend.port ON (port_id=contractitem_port_id)
 WHERE (true)
 <? if exists('contract_id') ?>
   AND (contractitem_contract_id=<? value('contract_id') ?>)

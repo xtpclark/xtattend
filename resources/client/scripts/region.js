@@ -82,14 +82,14 @@ function save()
   {
     if (_mode == "new")
     {
-      var qry = "INSERT INTO cgms.region (region_number, region_descrip, region_costelem_id) "
+      var qry = "INSERT INTO xtattend.region (region_number, region_descrip, region_costelem_id) "
               + "VALUES (UPPER(<? value('region_number') ?>), "
               + "        <? value('region_descrip') ?>,"
               + "        <? value('region_costelem_id') ?>);";
     }
     else
     {
-      var qry = "UPDATE cgms.region "
+      var qry = "UPDATE xtattend.region "
               + "SET region_number= UPPER(<? value('region_number') ?>), "
               + "    region_descrip= <? value('region_descrip') ?>,"
               + "    region_costelem_id= <? value('region_costelem_id') ?> "

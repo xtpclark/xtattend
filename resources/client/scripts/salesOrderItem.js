@@ -39,7 +39,7 @@ function usesContract()
     params.item_id = _item.id();
 
     var data = toolbox.executeQuery("SELECT itemcontract_uses_contract "
-                                  + "FROM cgms.itemcontract "
+                                  + "FROM xtattend.itemcontract "
                                   + "WHERE (itemcontract_item_id=<? value('item_id') ?>);", params);
     if (data.first())
     {
@@ -108,7 +108,7 @@ function getCoheadInfo()
     params.cohead_number = _orderNumber.text;
 
     var data = toolbox.executeQuery("SELECT cohead_cust_id, soport_port_id "
-                                  + "FROM cohead LEFT OUTER JOIN cgms.soport ON (soport_cohead_id=cohead_id) "
+                                  + "FROM cohead LEFT OUTER JOIN xtattend.soport ON (soport_cohead_id=cohead_id) "
                                   + "WHERE (cohead_number=<? value('cohead_number') ?>);", params);
     if (data.first())
     {
@@ -180,7 +180,7 @@ function sDeterminePrice()
     params.port_id = _portid;
     params.qtyOrdered = _qtyOrdered.toDouble();
 
-    var data = toolbox.executeQuery("SELECT cgms.contractSalesPrice(<? value('item_id') ?>, "
+    var data = toolbox.executeQuery("SELECT xtattend.contractSalesPrice(<? value('item_id') ?>, "
                                   + "                               <? value('warehous_id') ?>, "
                                   + "                               <? value('cust_id') ?>, "
                                   + "                               <? value('port_id') ?>, "
