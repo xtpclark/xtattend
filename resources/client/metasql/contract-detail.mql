@@ -1,0 +1,74 @@
+-- Group: contract
+-- Name:  detail
+-- Notes: Used by contracts
+
+SELECT contract_id AS id,
+       contract_target_id AS altId,
+       contract_number, contract_descrip,
+       CASE WHEN (contract_target_type='C') THEN <? value('customer') ?>
+            WHEN (contract_target_type='V') THEN <? value('vendor') ?>
+            ELSE 'Unknown'
+       END AS f_targettype,
+       CASE WHEN (contract_target_type='C') THEN cust_name
+            WHEN (contract_target_type='V') THEN vend_name
+            ELSE 'Unknown'
+       END AS f_target,
+       item_number, warehous_code, port_number,
+       CASE WHEN (contractitem_pricing_type='M') THEN <? value('marketindex') ?>
+            WHEN (contractitem_pricing_type='P') THEN <? value('pricingschedule') ?>
+            ELSE <? value('fixed') ?>
+       END AS f_pricingtype, 
+       CASE WHEN (contractitem_pricing_type='M') THEN costelem_type
+            WHEN (contractitem_pricing_type='P') THEN ipshead_name
+            ELSE 'N/A'
+       END AS f_index, 
+       contractitem_pctmarkup, curr_name,
+       contract_effective, contract_expires,
+       CASE WHEN (contractitem_pricing_type='F') THEN 'cost'
+            ELSE 'percent'
+       END AS contractitem_pctmarkup_xtnumericrole,
+       CASE WHEN COALESCE(contract_effective, startOfTime()) =
+                 startOfTime() THEN 'Always'
+       END AS contract_effective_qtdisplayrole,
+       CASE WHEN COALESCE(contract_expires, endOfTime()) >=
+                 endOfTime() THEN 'Never'
+       END AS contract_expires_qtdisplayrole 
+FROM cgms.contract LEFT OUTER JOIN custinfo ON (cust_id=contract_target_id)
+                   LEFT OUTER JOIN vendinfo ON (vend_id=contract_target_id)
+                   LEFT OUTER JOIN cgms.contractitem ON (contractitem_contract_id=contract_id)
+                   LEFT OUTER JOIN item ON (item_id=contractitem_item_id)
+                   LEFT OUTER JOIN warehous ON (warehous_id=contractitem_site_id)
+                   LEFT OUTER JOIN costelem ON (costelem_id=contractitem_costelem_id)
+                   LEFT OUTER JOIN ipshead ON (ipshead_id=contractitem_costelem_id)
+                   LEFT OUTER JOIN curr_symbol ON (curr_id=contractitem_curr_id)
+                   LEFT OUTER JOIN cgms.port ON (port_id=contractitem_port_id)
+WHERE (true)
+<? if exists('startDate') ?>
+  AND (contract_effective >= <? value('startDate') ?>)
+<? endif ?>
+<? if exists('endDate') ?>
+  AND (contract_expires <= <? value('endDate') ?>)
+<? endif ?>
+<? if exists('target_type') ?>
+  AND (contract_target_type=<? value('target_type') ?>)
+<? endif ?>
+<? if exists('target_id') ?>
+  AND (contract_target_id=<? value('target_id') ?>)
+<? endif ?>
+<? if exists('cust_id') ?>
+  AND (contract_target_type='C') AND (contract_target_id=<? value('cust_id') ?>)
+<? endif ?>
+<? if exists('vend_id') ?>
+  AND (contract_target_type='V') AND (contract_target_id=<? value('vend_id') ?>)
+<? endif ?>
+<? if exists('item_id') ?>
+  AND (contractitem_item_id=<? value('item_id') ?>)
+<? endif ?>
+<? if exists('warehous_id') ?>
+  AND (contractitem_site_id=<? value('warehous_id') ?>)
+<? endif ?>
+<? if exists('port_id') ?>
+  AND (contractitem_port_id=<? value('port_id') ?>)
+<? endif ?>
+
+ORDER BY f_targettype, f_target;

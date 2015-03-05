@@ -1,0 +1,6 @@
+-- Group: itemcontract
+-- Name:  update
+-- Notes: Used by item
+
+DELETE FROM cgms.itemcontract WHERE (itemcontract_item_id=<? value('item_id') ?>);
+INSERT INTO cgms.itemcontract(itemcontract_item_id, itemcontract_uses_contract) VALUES (<? value('item_id') ?>,<? value('usesContract') ?>);

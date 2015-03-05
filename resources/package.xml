@@ -1,0 +1,166 @@
+<package id = "resources"
+         name = "cgms"
+         developer = "xTuple"
+         descrip = "CGMS Contract Pricing"
+         version = "1.1"
+         updater = "2.2.0">
+  <pkgnotes>
+         Contract Pricing package for xTuple ERP.
+  </pkgnotes>
+
+  <loadpriv name = "MaintainRegionPort" module = "Custom">
+   Allowed to Maintain Shipping Zones and Ports
+  </loadpriv>
+
+  <loadpriv name = "ViewContract" module = "Custom">
+   Allowed to View Contracts
+  </loadpriv>
+
+  <loadpriv name = "MaintainContract" module = "Custom">
+   Allowed to Maintain Contracts
+  </loadpriv>
+
+  <loadpriv name = "ViewMktCost" module = "Custom">
+   Allowed to View Market Costs
+  </loadpriv>
+
+  <loadpriv name = "MaintainMktCost" module = "Custom">
+   Allowed to Maintain Market Costs
+  </loadpriv>
+
+  <loadpriv name = "OverrideContractPrice" module = "Custom">
+   Allowed to Override Contract Price on SO and PO
+  </loadpriv>
+
+  <loadappui file = "client/uiforms/contract.ui" />
+  <loadappui file = "client/uiforms/contractItem.ui" />
+  <loadappui file = "client/uiforms/contracts.ui" />
+  <loadappui file = "client/uiforms/contractCostedBOM.ui" />
+  <loadappui file = "client/uiforms/contractPriceList.ui" />
+  <loadappui file = "client/uiforms/mktcost.ui" />
+  <loadappui file = "client/uiforms/port.ui" />
+  <loadappui file = "client/uiforms/siteport.ui" />
+  <loadappui file = "client/uiforms/terminal.ui" />
+
+  <loadappscript file = "client/scripts/initMenu.js"
+                 name = "initMenu"
+                 order = "0" />
+  <loadappscript file = "client/scripts/cgmsErrors.js"
+                 name = "cgmsErrors"
+                 order = "0" />
+  <loadappscript file = "client/scripts/contract.js"
+                 name = "contract"
+                 order = "0" />
+  <loadappscript file = "client/scripts/contractItem.js"
+                 name = "contractItem"
+                 order = "0" />
+  <loadappscript file = "client/scripts/contracts.js"
+                 name = "contracts"
+                 order = "0" />
+  <loadappscript file = "client/scripts/contractPriceList.js"
+                 name = "contractPriceList"
+                 order = "0" />
+  <loadappscript file = "client/scripts/customer.js"
+                 name = "customer"
+                 order = "0" />
+  <loadappscript file = "client/scripts/dspContractCostedBOM.js"
+                 name = "dspContractCostedBOM"
+                 order = "0" />
+  <loadappscript file = "client/scripts/item.js"
+                 name = "item"
+                 order = "0" />
+  <loadappscript file = "client/scripts/itemAvailabilityWorkbench.js"
+                 name = "itemAvailabilityWorkbench"
+                 order = "0" />
+  <loadappscript file = "client/scripts/itemSource.js"
+                 name = "itemSource"
+                 order = "0" />
+  <loadappscript file = "client/scripts/mktcost.js"
+                 name = "mktcost"
+                 order = "0" />
+  <loadappscript file = "client/scripts/mktcosts.js"
+                 name = "mktcosts"
+                 order = "0" />
+  <loadappscript file = "client/scripts/port.js"
+                 name = "port"
+                 order = "0" />
+  <loadappscript file = "client/scripts/ports.js"
+                 name = "ports"
+                 order = "0" />
+  <loadappscript file = "client/scripts/purchaseOrder.js"
+                 name = "purchaseOrder"
+                 order = "0" />
+  <loadappscript file = "client/scripts/purchaseOrderItem.js"
+                 name = "purchaseOrderItem"
+                 order = "0" />
+  <loadappscript file = "client/scripts/salesOrder.js"
+                 name = "salesOrder"
+                 order = "0" />
+  <loadappscript file = "client/scripts/salesOrderItem.js"
+                 name = "salesOrderItem"
+                 order = "0" />
+  <loadappscript file = "client/scripts/siteport.js"
+                 name = "siteport"
+                 order = "0" />
+  <loadappscript file = "client/scripts/siteports.js"
+                 name = "siteports"
+                 order = "0" />
+  <loadappscript file = "client/scripts/terminal.js"
+                 name = "terminal"
+                 order = "0" />
+  <loadappscript file = "client/scripts/vendor.js"
+                 name = "vendor"
+                 order = "0" />
+
+  <loadreport file="client/reports/ContractCostedBOM.xml">cgms package</loadreport>
+  <loadreport file="client/reports/ContractList.xml">cgms package</loadreport>
+  <loadreport file="client/reports/MktCostList.xml">cgms package</loadreport>
+  <loadreport file="client/reports/PortList.xml">cgms package</loadreport>
+  <loadreport file="client/reports/ShipzoneList.xml">cgms package</loadreport>
+  <loadreport file="client/reports/SitePortList.xml">cgms package</loadreport>
+
+  <loadmetasql file = "client/metasql/contract-costedbom.mql" />
+  <loadmetasql file = "client/metasql/contract-detail.mql" />
+  <loadmetasql file = "client/metasql/contractitem-detail.mql" />
+  <loadmetasql file = "client/metasql/itemcontract-detail.mql" />
+  <loadmetasql file = "client/metasql/itemcontract-update.mql" />
+  <loadmetasql file = "client/metasql/mktcost-detail.mql" />
+  <loadmetasql file = "client/metasql/poport-detail.mql" />
+  <loadmetasql file = "client/metasql/poport-update.mql" />
+  <loadmetasql file = "client/metasql/port-detail.mql" />
+  <loadmetasql file = "client/metasql/shipzone-detail.mql" />
+  <loadmetasql file = "client/metasql/siteport-detail.mql" />
+  <loadmetasql file = "client/metasql/soport-detail.mql" />
+  <loadmetasql file = "client/metasql/soport-update.mql" />
+  <loadmetasql file = "client/metasql/terminal-detail.mql" />
+
+  <createfunction file="database/functions/contractpurchaseprice.sql"   name="contractpurchaseprice" />
+  <createfunction file="database/functions/contractsalesprice.sql"      name="contractsalesprice" />
+  <createfunction file="database/functions/deletecontract.sql"          name="deletecontract" />
+  <createfunction file="database/functions/deletecontractitem.sql"      name="deletecontractitem" />
+  <createfunction file="database/functions/deletemktcost.sql"           name="deletemktcost" />
+  <createfunction file="database/functions/deleteport.sql"              name="deleteport" />
+  <createfunction file="database/functions/deleteshipzone.sql"            name="deleteshipzone" />
+  <createfunction file="database/functions/deletesiteport.sql"          name="deletesiteport" />
+  <createfunction file="database/functions/deleteterminal.sql"          name="deleteterminal" />
+
+  <createtable file = "database/tables/contract.sql"
+               name = "contract" />
+  <createtable file = "database/tables/contractitem.sql"
+               name = "contractitem" />
+  <createtable file = "database/tables/itemcontract.sql"
+               name = "itemcontract" />
+  <createtable file = "database/tables/mktcost.sql"
+               name = "mktcost" />
+  <createtable file = "database/tables/poport.sql"
+               name = "poport" />
+  <createtable file = "database/tables/port.sql"
+               name = "port" />
+  <createtable file = "database/tables/siteport.sql"
+               name = "siteport" />
+  <createtable file = "database/tables/soport.sql"
+               name = "soport" />
+  <createtable file = "database/tables/terminal.sql"
+               name = "terminal" />
+
+</package>

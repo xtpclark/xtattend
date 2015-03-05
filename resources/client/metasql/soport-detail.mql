@@ -1,0 +1,11 @@
+-- Group: soport
+-- Name:  detail
+-- Notes: Used by salesOrder
+
+SELECT soport.*
+FROM cgms.soport JOIN cohead ON (cohead_id=soport_cohead_id)
+WHERE (true)
+<? if exists('cohead_number') ?>
+  AND (cohead_number=<? value('cohead_number') ?>)
+<? endif ?>
+;

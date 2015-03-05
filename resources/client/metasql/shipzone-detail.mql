@@ -1,0 +1,15 @@
+-- Group: shipzone
+-- Name:  detail
+-- Notes: Used by shipzone
+
+SELECT shipzone_id AS id,
+       shipzone_name, shipzone_descrip,
+       country_name
+FROM shipzone 
+LEFT OUTER JOIN country ON (shipzone_country_id=country_id)
+WHERE (true)
+<? if exists('shipzone_id') ?>
+  AND (shipzone_id=<? value('shipzone_id') ?>)
+<? endif ?>
+
+ORDER BY shipzone_name;

@@ -1,0 +1,28 @@
+-- Group: mktcost
+-- Name:  detail
+-- Notes: Used by mktcosts
+
+SELECT mktcost_id AS id,
+       item_number, costelem_type,
+       mktcost_cost, mktcost_updated,
+       'cost' AS mktcost_cost_xtnumericrole
+FROM cgms.mktcost LEFT OUTER JOIN item ON (item_id=mktcost_item_id)
+                  LEFT OUTER JOIN costelem ON (costelem_id=mktcost_costelem_id)
+WHERE (true)
+<? if exists('startDate') ?>
+  AND (mktcost_updated >= <? value('startDate') ?>)
+<? endif ?>
+<? if exists('endDate') ?>
+  AND (mktcost_updated <= <? value('endDate') ?>)
+<? endif ?>
+<? if exists('item_id') ?>
+  AND (mktcost_item_id=<? value('item_id') ?>)
+<? endif ?>
+<? if exists("prodcat_id") ?>
+  AND (item_prodcat_id=<? value("prodcat_id") ?>)
+<? endif ?>
+<? if exists('costelem_id') ?>
+  AND (mktcost_costelem_id=<? value('costelem_id') ?>)
+<? endif ?>
+
+ORDER BY item_number, costelem_type;
