@@ -1,6 +1,0 @@
--- Group: poport
--- Name:  update
--- Notes: Used by purchaseOrder
-
-DELETE FROM xtattend.poport WHERE (poport_pohead_id=<? value('pohead_id') ?>);
-INSERT INTO xtattend.poport(poport_pohead_id, poport_port_id, poport_terminal_id) VALUES (<? value('pohead_id') ?>,<? value('port_id') ?>,<? value('terminal_id') ?>);

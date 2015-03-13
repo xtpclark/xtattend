@@ -1,9 +1,0 @@
--- Group: soport
--- Name:  update
--- Notes: Used by salesOrder
-
-DELETE FROM xtattend.soport WHERE (soport_cohead_id=<? value('cohead_id') ?>);
-INSERT INTO xtattend.soport(soport_cohead_id, soport_port_id, soport_terminal_id)
-SELECT cohead_id,<? value('port_id') ?>,<? value('terminal_id') ?>
-FROM cohead
-WHERE (cohead_id=<? value('cohead_id') ?>);
